@@ -4,6 +4,7 @@ if(process.env.NODE_ENV != "production") {
 
 const express = require("express");
 const app = express();
+app.set("trust proxy", 1);
 const mongoose = require("mongoose");
 const path = require("path");
 const methodOverride = require("method-override");
@@ -56,6 +57,7 @@ store.on("error", function(e) {
   console.log("Mongo Session Store Error!", e);
 });
 
+
 // Session Configuration: added cookie expiration and maxAge to ensure the session lasts for 7 days
 const sessionOptions = {
   store,
@@ -63,6 +65,7 @@ const sessionOptions = {
   resave: false,
   saveUninitialized: true,
   cookie: {
+   secure: true,
    expires: Date.now() + 7 * 24 * 60 * 60 * 1000, // 7 days
    maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
    httpOnly: true, // Mitigate XSS attacks by preventing client-side access to the cookie
