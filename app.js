@@ -45,7 +45,7 @@ app.engine("ejs", ejsMate);
 app.use(express.static(path.join(__dirname, "/public")));
 
 // Session Store Configuration: using connect-mongo to store session data in MongoDB. This is more scalable and secure than the default in-memory store, especially for production environments. The touchAfter option is set to 24 hours, which means that the session will only be updated in the database if it has been modified or if it has been more than 24 hours since the last update. This can help reduce the number of writes to the database and improve performance.
-const store = MongoStore.create({
+const store = new MongoStore({
   mongoUrl: dbUrl,
   crypto: {
     secret:  process.env.SECRET,
