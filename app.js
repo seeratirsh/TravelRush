@@ -11,7 +11,7 @@ const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const ExpressError = require("./utils/ExpressError.js");
 const session = require("express-session");
-const MongoStore = require('connect-mongo');
+const {MongoStore} = require('connect-mongo');
 const flash = require("connect-flash");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
@@ -45,7 +45,7 @@ app.engine("ejs", ejsMate);
 app.use(express.static(path.join(__dirname, "/public")));
 
 // Session Store Configuration: using connect-mongo to store session data in MongoDB. This is more scalable and secure than the default in-memory store, especially for production environments. The touchAfter option is set to 24 hours, which means that the session will only be updated in the database if it has been modified or if it has been more than 24 hours since the last update. This can help reduce the number of writes to the database and improve performance.
-const store = new MongoStore({
+const store = MongoStore.create({
   mongoUrl: dbUrl,
   crypto: {
     secret:  process.env.SECRET,
