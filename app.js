@@ -65,7 +65,7 @@ const sessionOptions = {
   resave: false,
   saveUninitialized: true,
   cookie: {
-   secure: true,
+   secure: process.env.NODE_ENV === "production",
    expires: Date.now() + 7 * 24 * 60 * 60 * 1000, // 7 days
    maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
    httpOnly: true, // Mitigate XSS attacks by preventing client-side access to the cookie

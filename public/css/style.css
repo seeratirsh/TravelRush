@@ -1,18 +1,19 @@
-body{
+/* ===== BASE ===== */
+body {
     font-family: "Plus Jakarta Sans", sans-serif !important;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
 
-.container{
+.container {
     flex: 1;
 }
 
-/* Navbar */
-.navbar{
-    height: 5rem;
+/* ===== NAVBAR ===== */
+.navbar {
     background-color: white;
+    padding: 0.75rem 1rem;
 }
 
 .fa-compass {
@@ -20,115 +21,307 @@ body{
     font-size: 2rem;
 }
 
-.nav-link{
+.nav-link {
     color: #222222 !important;
 }
 
-/* Footer */
+.search-btn {
+    background-color: #fe424d;
+    color: white;
+    border-radius: 25px;
+    padding: 0.4rem 1rem;
+    font-size: 0.8rem;
+    border: none;
+    white-space: nowrap;
+}
+
+.search-btn:hover {
+    background-color: #e03a45;
+    color: white;
+}
+
+.search-btn i {
+    display: inline;
+    margin-right: 0.4rem;
+}
+
+.search-inp {
+    border-radius: 25px;
+    padding: 0.4rem 1rem;
+    font-size: 0.8rem;
+    min-width: 0;
+}
+
+/* Collapse spacing fix */
+.navbar-collapse .navbar-nav {
+    gap: 0.25rem;
+}
+
+@media (max-width: 767px) {
+    .navbar-collapse .navbar-nav.ms-auto {
+        margin-left: 0 !important;
+    }
+
+    .navbar-collapse form.d-flex {
+        flex-direction: row;
+        width: 100%;
+        margin: 0.5rem 0;
+    }
+
+    .search-inp {
+        flex: 1;
+    }
+}
+
+/* ===== FOOTER ===== */
 .f-info-links a {
     text-decoration: none;
     color: #222222;
 }
 
-.f-info-links a:hover{
+.f-info-links a:hover {
     text-decoration: underline;
 }
 
 .f-info-links,
 .f-info-socials,
-.f-info-brand{
-     width: 100%;
-     display: flex;
-     align-items: center;
-     justify-content: center;
+.f-info-brand {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
 }
 
 .f-info-socials i {
     font-size: 1.3rem;
-    margin-right: 2rem;
+    margin-right: 1.5rem;
 }
 
-.f-info{
+.f-info {
     text-align: center;
-    height: 8rem;
+    min-height: 8rem;
     background-color: #ebebeb;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-content: space-evenly;
+    padding: 1rem;
 }
 
-/* Cards */
-
-.listing-card{
+/* ===== CARDS (INDEX) ===== */
+.listing-card {
     border: none !important;
     margin-bottom: 2rem;
-    border-radius: 20rem;
 }
 
-.card-img-top{
-    border-radius: 2rem !important;
+.card-img-top {
+    border-radius: 1.2rem !important;
     width: 100% !important;
     object-fit: cover !important;
+    height: 18rem;
 }
 
-.card-body{
-    padding: 0% !important;
+.card-body {
+    padding: 0.5rem 0 0 0 !important;
 }
 
-.card-text{
-font-weight: 400 !important;
+.card-text {
+    font-weight: 400 !important;
 }
 
-.listing-link{
+.listing-link {
     text-decoration: none;
+    color: inherit;
 }
 
-/* Card Decoration */
-
-.card-img-overlay{
+/* Card hover overlay */
+.card-img-overlay {
     opacity: 0;
+    border-radius: 1.2rem;
+    transition: opacity 0.2s;
 }
 
-.card-img-overlay:hover{
-    opacity: 0.2;
+.card-img-overlay:hover {
+    opacity: 0.15;
     background-color: white;
 }
 
-/* New Page  */
-
-.add-btn{
-    background-color: #fe424d !important;
-    border: none !important;
-}
-
-/* Edit Page */
-
-.edit-btn{
-    background-color: #fe424d !important;
-    border: none !important;
- }
-
-/* Show Page */
-.show-img{
-    height: 30vh;
-}
-
-.btns{
+/* ===== FILTERS (INDEX) ===== */
+#filters {
     display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 0;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
 }
 
-.show-card{
+.filter {
+    text-align: center;
+    margin-right: 1.5rem;
+    margin-top: 1rem;
+    opacity: 0.7;
+    flex-shrink: 0;
+}
+
+.filter:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+
+.filter p {
+    font-size: 0.75rem;
+    margin-bottom: 0;
+}
+
+.tax-info {
+    display: none;
+}
+
+.tax-toggle {
+    border: 1px solid black;
+    border-radius: 1rem;
+    height: auto;
+    padding: 0.6rem 1rem;
+    margin-left: 1rem;
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+@media (max-width: 576px) {
+    .tax-toggle {
+        margin-left: 0;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .card-img-top {
+        height: 14rem;
+    }
+}
+
+/* ===== FORMS (NEW / EDIT) ===== */
+.add-btn {
+    background-color: #fe424d !important;
+    border: none !important;
+    width: 100%;
+}
+
+.edit-btn {
+    background-color: #fe424d !important;
+    border: none !important;
+}
+
+@media (max-width: 576px) {
+    .add-btn,
+    .edit-btn {
+        width: 100%;
+    }
+}
+
+/* ===== SHOW PAGE ===== */
+.show-img {
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 1rem !important;
+}
+
+.show-card {
     padding-left: 0;
     padding-right: 0;
+    border: none !important;
 }
 
-/* Map */
-#map { position: absolute;
-     height: 400px;
-     width: 80vh;
-     overflow: hidden;
-     position: relative;   /* Add this */
-     z-index: 0;      
-     }
+.btns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+}
 
+.btns .btn {
+    min-width: 80px;
+}
+
+/* ===== MAP ===== */
+#map {
+    height: 400px;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    z-index: 0;
+    border-radius: 1rem;
+}
+
+/* ===== LOGIN / REGISTER ===== */
+.auth-card {
+    border-radius: 1rem;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    padding: 2rem;
+}
+
+/* ===== RESPONSIVE BREAKPOINTS ===== */
+
+/* Tablet */
+@media (max-width: 768px) {
+    .show-img {
+        height: 300px;
+    }
+
+    #map {
+        height: 300px;
+    }
+
+    .btns {
+        flex-direction: column;
+    }
+
+    .btns a,
+    .btns form,
+    .btns form button {
+        width: 100%;
+    }
+
+    /* Form pages */
+    .col-8.offset-2,
+    .col-6.offset-3 {
+        width: 100% !important;
+        margin-left: 0 !important;
+        padding: 0 1rem;
+    }
+
+    /* Review cards full width on tablet */
+    .review-col {
+        width: 100%;
+    }
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+    .show-img {
+        height: 220px;
+    }
+
+    #map {
+        height: 250px;
+    }
+
+    h3, h4 {
+        font-size: 1.2rem;
+    }
+
+    .f-info-socials i {
+        margin-right: 1rem;
+    }
+
+    .card-img-top {
+        height: 13rem;
+    }
+}
